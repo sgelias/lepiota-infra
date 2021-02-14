@@ -1,24 +1,14 @@
-data "aws_ami" "ubuntu" {
-  most_recent = true
-
-  filter {
-    name   = "lepista"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"]
+resource "aws_key_pair" "web" {
+  key_name   = "lepista-iaas"
+  public_key = file("../.secrets/lepista-iaas.pub")
 }
 
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
+  count         = var.instance_count
+  ami           = lookup(var.ami, var.aws_region)
   instance_type = "t2.micro"
 
   tags = {
-    Name = "lepista"
+    Name = "lepista-iaas"
   }
 }

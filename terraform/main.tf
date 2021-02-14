@@ -1,11 +1,11 @@
 provider "aws" {
-  region  = "us-east-1"
+  region  = var.aws_region
   version = "~> 2.0"
 }
 
 terraform {
   backend "s3" {
-    bucket = "lepiota-tfstate"
+    bucket = "lepista-iaas-tfstate"
     key    = "terraformt.tfstate"
     region = "us-east-1"
   }
