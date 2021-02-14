@@ -24,3 +24,8 @@ variable "instance_type" {
 variable "aws_region" {
   default = "us-east-1"
 }
+
+variable "hash_commit" {
+  type = string
+  description = "The drone hash commit."
+}
