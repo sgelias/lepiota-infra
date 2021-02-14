@@ -17,17 +17,17 @@ steps:
         from_secret: AWS_ACCESS_KEY_ID
       AWS_SECRET_ACCESS_KEY:
         from_secret: AWS_SECRET_ACCESS_KEY
-      VPC_ID:
-        from_secret: VPC_ID
-      SUBNET_ID:
-        from_secret: SUBNET_ID
-      K8S_MASTER_NODE_IP:
-        from_secret: K8S_MASTER_NODE_IP
-      K8S_API_SECURE_PORT:
-        from_secret: K8S_API_SECURE_PORT
+      # VPC_ID:
+      #   from_secret: VPC_ID
+      # SUBNET_ID:
+      #   from_secret: SUBNET_ID
+      # K8S_MASTER_NODE_IP:
+      #   from_secret: K8S_MASTER_NODE_IP
+      # K8S_API_SECURE_PORT:
+      #   from_secret: K8S_API_SECURE_PORT
     commands:
       - apk -U add ansible
-      - packer validate packer/main.json
+      - packer build packer/main.json
 
   - name: terraform plan and apply
     image: hashicorp/terraform:light

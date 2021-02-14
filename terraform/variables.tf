@@ -9,7 +9,7 @@ variable "az_count" {
 
 variable "ami" {
   default = {
-    "us-east-1": "ami-03d315ad33b9d49c4"
+    "us-east-1" : "ami-03d315ad33b9d49c4"
   }
 }
 
@@ -26,6 +26,6 @@ variable "aws_region" {
 }
 
 variable "hash_commit" {
-  type = string
+  type        = string
   description = "The drone hash commit."
 }

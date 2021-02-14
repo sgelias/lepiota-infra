@@ -3,8 +3,7 @@
         "ami_id": "ami-03d315ad33b9d49c4",
         "aws_region": "us-east-1",
         "ssh_username": "ubuntu",
-        "aws_vpc_id": "{{env `VPC_ID`}}",
-        "subnet_id": "{{env `SUBNET_ID`}}",
+        "aws_vpc_id": "vpc-8503eef8",
         "hash_commit": "{{env `DRONE_COMMIT`}}",
         "k8s_master_node_ip": "{{env `K8S_MASTER_NODE_IP`}}",
         "k8s_api_secure_port": "{{env `K8S_API_SECURE_PORT`}}",
@@ -15,22 +14,19 @@
             "type": "amazon-ebs",
             "region": "{{user `aws_region`}}",
             "source_ami": "{{user `ami_id`}}",
-            "subnet_id": "{{user `subnet_id`}}",
             "instance_type": "{{user `instante_type`}}",
             "ssh_username": "ubuntu",
-            "ami_name": "lepista-{{user `hash_commit`}}",
+            "ami_name": "lepista-k8s-{{user `hash_commit`}}",
             "vpc_id": "{{user `aws_vpc_id`}}"
         }
     ],
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "./packer/provisioners/ansible/install-k8s/main.yml",
+            "playbook_file": "provisioners/ansible/install-k8s/main.yml",
             "user": "{{user `ssh_username`}}",
             "ansible_env_vars": [
-                "ANSIBLE_HOST_KEY_CHECKING=False",
-                "K8S_MASTER_NODE_IP={{user `k8s_master_node_ip`}}",
-                "K8S_API_SECURE_PORT={{user `k8s_api_secure_port`}}"
+                "ANSIBLE_HOST_KEY_CHECKING=False"
             ]
         }
     ]

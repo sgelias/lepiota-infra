@@ -1,3 +1,4 @@
+---
 - name: Installing Docker
   shell: curl -fsSL https://get.docker.com | bash -
 
