@@ -22,6 +22,10 @@
     ],
     "provisioners": [
         {
+          "type": "shell",
+          "script":"./packer/provisioners/shell/install_python.sh"
+        },
+        {
             "type": "ansible",
             "playbook_file": "./packer/provisioners/ansible/install-k8s/main.yml",
             "user": "{{user `ssh_username`}}",
