@@ -25,7 +25,7 @@
     "provisioners": [
         {
             "type": "ansible",
-            "playbook_file": "./packer/provisioners/ansible/main.yml",
+            "playbook_file": "./packer/provisioners/ansible/install-k8s/main.yml",
             "user": "{{user `ssh_username`}}",
             "ansible_env_vars": [
                 "ANSIBLE_HOST_KEY_CHECKING=False",
