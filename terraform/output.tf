@@ -1,3 +1,4 @@
 output "ip_address" {
-  value = "${aws_instance.web.public_ip}"
+  count = var.instance_count
+  value = aws_instance.web[count.index].public_ip
 }
