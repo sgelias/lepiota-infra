@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while [ ! -f /var/lib/cloud/instance/boot-finished ]; do
-    echo "Waiting fro cloud init..."
+    echo "Waiting for cloud init..."
     sleep 1
 done
 
