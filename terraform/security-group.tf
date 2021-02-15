@@ -4,7 +4,7 @@ resource "aws_security_group" "ssh_access" {
   vpc_id      = aws_vpc.main.id
 
   ingress = [{
-    description      = "ssh_access"
+    description      = "ssh_access_input"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
@@ -16,6 +16,7 @@ resource "aws_security_group" "ssh_access" {
   }]
 
   egress = [{
+    description      = "ssh_access_output"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
