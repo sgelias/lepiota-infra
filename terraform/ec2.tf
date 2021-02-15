@@ -24,10 +24,10 @@ resource "aws_key_pair" "web" {
 }
 
 resource "aws_instance" "web" {
-  count           = var.instance_count
-  ami             = lookup(var.ami, var.aws_region)
-  instance_type   = var.instance_type
-  security_groups = ["${aws_security_group.ssh_access.id}"]
+  count                  = var.instance_count
+  ami                    = lookup(var.ami, var.aws_region)
+  instance_type          = var.instance_type
+  vpc_security_group_ids = ["${aws_security_group.ssh_access.id}"]
 
   tags = {
     Name = "lepista-k8s-${var.hash_commit}"
