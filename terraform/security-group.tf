@@ -1,13 +1,14 @@
-resource "aws_security_group" "allow_http" {
-  name        = "lepista-k8s-${var.hash_commit}"
+resource "aws_security_group" "ssh_access" {
+  name        = "lepista-k8s"
   description = "Allow http access"
-  vpc_id      = "lepista-k8s-${var.hash_commit}"
+  vpc_id      = aws_vpc.main.id
 
   ingress = [{
-    from_port   = 80
-    to_port     = 80
+    description = "ssh_access"
+    from_port   = 22
+    to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }]
 
   egress = [{
@@ -16,4 +17,8 @@ resource "aws_security_group" "allow_http" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }]
+
+  tags = {
+    Name = "ssh_access"
+  }
 }
