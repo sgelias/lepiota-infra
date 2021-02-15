@@ -1,7 +1,7 @@
 resource "aws_security_group" "allow_http" {
   name        = "lepista-k8s-${var.hash_commit}"
   description = "Allow http access"
-  vpc_id      = "value"
+  vpc_id      = "lepista-k8s-${var.hash_commit}"
 
   ingress = [{
     from_port   = 80
