@@ -2,3 +2,4 @@ terraform/.terraform
 terraform/.terraform*
 .secrets
 terraform/plans
+packer/tests

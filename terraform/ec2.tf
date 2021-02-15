@@ -1,4 +1,4 @@
-data "aws_ami" "name" {
+data "aws_ami" "ami_commit" {
   most_recent = true
   owners      = ["self"]
 
@@ -27,7 +27,7 @@ resource "aws_instance" "web" {
   count         = var.instance_count
   ami           = lookup(var.ami, var.aws_region)
   instance_type = var.instance_type
-  security_groups = [aws_security_group.ssh_access]
+  security_groups = [aws_security_group.ssh_access.id]
 
   tags = {
     Name = "lepista-k8s-${var.hash_commit}"
